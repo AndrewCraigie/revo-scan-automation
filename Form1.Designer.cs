@@ -51,12 +51,16 @@
             RevoScanWindowWidth = new NumericUpDown();
             label6 = new Label();
             StartButton = new Button();
+            label8 = new Label();
+            ScanDuration = new NumericUpDown();
+            UseScanDuration = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)PauseTime).BeginInit();
             ((System.ComponentModel.ISupportInitialize)StartButtonX).BeginInit();
             ((System.ComponentModel.ISupportInitialize)StartButtonY).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)RevoScanWindowHeight).BeginInit();
             ((System.ComponentModel.ISupportInitialize)RevoScanWindowWidth).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ScanDuration).BeginInit();
             SuspendLayout();
             // 
             // windowListComboBox
@@ -111,9 +115,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(12, 340);
             label3.Name = "label3";
-            label3.Size = new Size(142, 20);
+            label3.Size = new Size(143, 20);
             label3.TabIndex = 5;
-            label3.Text = "Pause Time Seconds";
+            label3.Text = "Delay Time Seconds";
             // 
             // PauseTime
             // 
@@ -275,19 +279,48 @@
             // 
             StartButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             StartButton.BackColor = Color.FromArgb(255, 128, 128);
-            StartButton.Location = new Point(266, 336);
+            StartButton.Location = new Point(261, 336);
             StartButton.Name = "StartButton";
-            StartButton.Size = new Size(241, 74);
+            StartButton.Size = new Size(246, 114);
             StartButton.TabIndex = 18;
             StartButton.Text = "Start";
             StartButton.UseVisualStyleBackColor = false;
             StartButton.Click += StartButton_Click;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(12, 379);
+            label8.Name = "label8";
+            label8.Size = new Size(102, 20);
+            label8.TabIndex = 19;
+            label8.Text = "Scan Duration";
+            // 
+            // ScanDuration
+            // 
+            ScanDuration.Location = new Point(166, 377);
+            ScanDuration.Name = "ScanDuration";
+            ScanDuration.Size = new Size(89, 27);
+            ScanDuration.TabIndex = 20;
+            // 
+            // UseScanDuration
+            // 
+            UseScanDuration.AutoSize = true;
+            UseScanDuration.Location = new Point(18, 413);
+            UseScanDuration.Name = "UseScanDuration";
+            UseScanDuration.Size = new Size(152, 24);
+            UseScanDuration.TabIndex = 22;
+            UseScanDuration.Text = "Use Scan Duration";
+            UseScanDuration.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(519, 421);
+            ClientSize = new Size(519, 461);
+            Controls.Add(UseScanDuration);
+            Controls.Add(ScanDuration);
+            Controls.Add(label8);
             Controls.Add(StartButton);
             Controls.Add(RevoScanWindowCountLabel);
             Controls.Add(OpenRevoScanButton);
@@ -311,6 +344,7 @@
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)RevoScanWindowHeight).EndInit();
             ((System.ComponentModel.ISupportInitialize)RevoScanWindowWidth).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ScanDuration).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -340,5 +374,8 @@
         private NumericUpDown RevoScanWindowWidth;
         private Label label6;
         private Button StartButton;
+        private Label label8;
+        private NumericUpDown ScanDuration;
+        private CheckBox UseScanDuration;
     }
 }

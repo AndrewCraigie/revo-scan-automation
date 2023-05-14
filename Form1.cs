@@ -18,6 +18,7 @@ namespace RevopointScanAutomation
         private SoundPlayer beepSoundPlayer;
         private SoundPlayer completeSoundPlayer;
         private System.Threading.Timer countdownTimer;
+        private System.Threading.Timer durationTimer;
 
         IntPtr selectedHwnd;
 
@@ -57,6 +58,7 @@ namespace RevopointScanAutomation
             RevoScanWindowHeight.Value = SettingsManager.GetIntValue("RevoScanWindowHeight");
             StartButtonX.Value = SettingsManager.GetIntValue("StartButtonX");
             StartButtonY.Value = SettingsManager.GetIntValue("StartButtonY");
+            ScanDuration.Value = SettingsManager.GetIntValue("ScanDuration");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -101,6 +103,9 @@ namespace RevopointScanAutomation
 
             int startButtonYValue = (int)StartButtonY.Value;
             SettingsManager.SaveIntValue("StartButtonY", startButtonYValue);
+
+            int scanDuration = (int)ScanDuration.Value;
+            SettingsManager.SaveIntValue("ScanDuration", scanDuration);
 
         }
 
@@ -193,6 +198,27 @@ namespace RevopointScanAutomation
 
             var mouseEventFlags = MouseEventFlags.LeftDown | MouseEventFlags.LeftUp;
             NativeImports.mouse_event((int)mouseEventFlags, 0, 0, 0, 0);
+
+            if (UseScanDuration.Checked)
+            {
+                PauseScanWithClickAfterDuration();
+            }
+        }
+
+        private void PauseScanWithClickAfterDuration()
+        {
+            WindowManager.BringWindowToFront(selectedHwnd);
+
+            int scanDuration = (int)ScanDuration.Value;
+
+            Thread.Sleep(scanDuration * 1000);
+
+            var mouseEventFlags = MouseEventFlags.LeftDown | MouseEventFlags.LeftUp;
+            NativeImports.mouse_event((int)mouseEventFlags, 0, 0, 0, 0);
+
+            completeSoundPlayer.Play();
+            Thread.Sleep(500);
+            completeSoundPlayer.Play();
         }
     }
 

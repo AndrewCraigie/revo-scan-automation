@@ -94,5 +94,17 @@ namespace RevopointScanAutomation.Properties {
                 this["SavedValue_RevoScanWindowHeight"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int SavedValue_ScanDuration {
+            get {
+                return ((int)(this["SavedValue_ScanDuration"]));
+            }
+            set {
+                this["SavedValue_ScanDuration"] = value;
+            }
+        }
     }
 }
