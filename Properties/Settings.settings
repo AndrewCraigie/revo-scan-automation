@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RevopointScanAutomation.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SavedValue_RevoScanApplicationPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files\Revo Scan 5\RevoScan5.exe</Value>
+    </Setting>
+    <Setting Name="SavedValue_PauseTime" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="SavedValue_StartButtonX" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1440</Value>
+    </Setting>
+    <Setting Name="SavedValue_StartButtonY" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">322</Value>
+    </Setting>
+    <Setting Name="SavedValue_RevoScanWindowWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1600</Value>
+    </Setting>
+    <Setting Name="SavedValue_RevoScanWindowHeight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">900</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
