@@ -54,6 +54,17 @@
             label8 = new Label();
             ScanDuration = new NumericUpDown();
             UseScanDuration = new CheckBox();
+            tabCtrlGRBL = new TabControl();
+            tabPageGRBL = new TabPage();
+            btnSendCommand = new Button();
+            textBoxGRBLCommand = new TextBox();
+            groupBox2 = new GroupBox();
+            btnConnect = new Button();
+            btnRescan = new Button();
+            comboBoxBaudRate = new ComboBox();
+            comboBoxCOMPorts = new ComboBox();
+            tabPageRevoScan = new TabPage();
+            textBoxLog = new TextBox();
             ((System.ComponentModel.ISupportInitialize)PauseTime).BeginInit();
             ((System.ComponentModel.ISupportInitialize)StartButtonX).BeginInit();
             ((System.ComponentModel.ISupportInitialize)StartButtonY).BeginInit();
@@ -61,22 +72,26 @@
             ((System.ComponentModel.ISupportInitialize)RevoScanWindowHeight).BeginInit();
             ((System.ComponentModel.ISupportInitialize)RevoScanWindowWidth).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ScanDuration).BeginInit();
+            tabCtrlGRBL.SuspendLayout();
+            tabPageGRBL.SuspendLayout();
+            groupBox2.SuspendLayout();
+            tabPageRevoScan.SuspendLayout();
             SuspendLayout();
             // 
             // windowListComboBox
             // 
             windowListComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             windowListComboBox.FormattingEnabled = true;
-            windowListComboBox.Location = new Point(107, 54);
+            windowListComboBox.Location = new Point(102, 48);
             windowListComboBox.Name = "windowListComboBox";
-            windowListComboBox.Size = new Size(299, 28);
+            windowListComboBox.Size = new Size(253, 28);
             windowListComboBox.TabIndex = 0;
             windowListComboBox.SelectedIndexChanged += windowListComboBox_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(11, 58);
+            label1.Location = new Point(6, 52);
             label1.Name = "label1";
             label1.Size = new Size(90, 20);
             label1.TabIndex = 1;
@@ -85,7 +100,7 @@
             // refreshWindowListButton
             // 
             refreshWindowListButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            refreshWindowListButton.Location = new Point(413, 54);
+            refreshWindowListButton.Location = new Point(361, 43);
             refreshWindowListButton.Name = "refreshWindowListButton";
             refreshWindowListButton.Size = new Size(94, 29);
             refreshWindowListButton.TabIndex = 2;
@@ -107,13 +122,13 @@
             RevoScanApplicationPath.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             RevoScanApplicationPath.Location = new Point(6, 46);
             RevoScanApplicationPath.Name = "RevoScanApplicationPath";
-            RevoScanApplicationPath.Size = new Size(383, 27);
+            RevoScanApplicationPath.Size = new Size(332, 27);
             RevoScanApplicationPath.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 340);
+            label3.Location = new Point(7, 334);
             label3.Name = "label3";
             label3.Size = new Size(143, 20);
             label3.TabIndex = 5;
@@ -121,7 +136,7 @@
             // 
             // PauseTime
             // 
-            PauseTime.Location = new Point(166, 338);
+            PauseTime.Location = new Point(161, 332);
             PauseTime.Name = "PauseTime";
             PauseTime.Size = new Size(89, 27);
             PauseTime.TabIndex = 6;
@@ -129,7 +144,7 @@
             // browseScanningApplication
             // 
             browseScanningApplication.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            browseScanningApplication.Location = new Point(395, 45);
+            browseScanningApplication.Location = new Point(344, 45);
             browseScanningApplication.Name = "browseScanningApplication";
             browseScanningApplication.Size = new Size(94, 29);
             browseScanningApplication.TabIndex = 7;
@@ -140,7 +155,7 @@
             // hwndLabel
             // 
             hwndLabel.AutoSize = true;
-            hwndLabel.Location = new Point(246, 128);
+            hwndLabel.Location = new Point(241, 122);
             hwndLabel.Name = "hwndLabel";
             hwndLabel.Size = new Size(197, 20);
             hwndLabel.TabIndex = 8;
@@ -148,7 +163,7 @@
             // 
             // connectToRevoScanWindowButton
             // 
-            connectToRevoScanWindowButton.Location = new Point(11, 124);
+            connectToRevoScanWindowButton.Location = new Point(6, 118);
             connectToRevoScanWindowButton.Name = "connectToRevoScanWindowButton";
             connectToRevoScanWindowButton.Size = new Size(229, 29);
             connectToRevoScanWindowButton.TabIndex = 9;
@@ -159,7 +174,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(246, 96);
+            label4.Location = new Point(241, 90);
             label4.Name = "label4";
             label4.Size = new Size(191, 20);
             label4.TabIndex = 10;
@@ -203,7 +218,7 @@
             // 
             // OpenRevoScanButton
             // 
-            OpenRevoScanButton.Location = new Point(11, 12);
+            OpenRevoScanButton.Location = new Point(6, 6);
             OpenRevoScanButton.Name = "OpenRevoScanButton";
             OpenRevoScanButton.Size = new Size(142, 29);
             OpenRevoScanButton.TabIndex = 15;
@@ -214,7 +229,7 @@
             // RevoScanWindowCountLabel
             // 
             RevoScanWindowCountLabel.AutoSize = true;
-            RevoScanWindowCountLabel.Location = new Point(160, 16);
+            RevoScanWindowCountLabel.Location = new Point(155, 10);
             RevoScanWindowCountLabel.Name = "RevoScanWindowCountLabel";
             RevoScanWindowCountLabel.Size = new Size(17, 20);
             RevoScanWindowCountLabel.TabIndex = 16;
@@ -222,7 +237,6 @@
             // 
             // groupBox1
             // 
-            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(RevoScanWindowHeight);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(RevoScanWindowWidth);
@@ -234,9 +248,9 @@
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(StartButtonX);
             groupBox1.Controls.Add(StartButtonXLabel);
-            groupBox1.Location = new Point(12, 170);
+            groupBox1.Location = new Point(7, 164);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(495, 160);
+            groupBox1.Size = new Size(444, 160);
             groupBox1.TabIndex = 17;
             groupBox1.TabStop = false;
             groupBox1.Text = "Settings";
@@ -277,11 +291,10 @@
             // 
             // StartButton
             // 
-            StartButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             StartButton.BackColor = Color.FromArgb(255, 128, 128);
-            StartButton.Location = new Point(261, 336);
+            StartButton.Location = new Point(256, 330);
             StartButton.Name = "StartButton";
-            StartButton.Size = new Size(246, 114);
+            StartButton.Size = new Size(195, 68);
             StartButton.TabIndex = 18;
             StartButton.Text = "Start";
             StartButton.UseVisualStyleBackColor = false;
@@ -290,7 +303,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(12, 379);
+            label8.Location = new Point(7, 373);
             label8.Name = "label8";
             label8.Size = new Size(102, 20);
             label8.TabIndex = 19;
@@ -298,7 +311,7 @@
             // 
             // ScanDuration
             // 
-            ScanDuration.Location = new Point(166, 377);
+            ScanDuration.Location = new Point(161, 371);
             ScanDuration.Name = "ScanDuration";
             ScanDuration.Size = new Size(89, 27);
             ScanDuration.TabIndex = 20;
@@ -306,33 +319,144 @@
             // UseScanDuration
             // 
             UseScanDuration.AutoSize = true;
-            UseScanDuration.Location = new Point(18, 413);
+            UseScanDuration.Location = new Point(13, 407);
             UseScanDuration.Name = "UseScanDuration";
             UseScanDuration.Size = new Size(152, 24);
             UseScanDuration.TabIndex = 22;
             UseScanDuration.Text = "Use Scan Duration";
             UseScanDuration.UseVisualStyleBackColor = true;
             // 
+            // tabCtrlGRBL
+            // 
+            tabCtrlGRBL.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tabCtrlGRBL.Controls.Add(tabPageGRBL);
+            tabCtrlGRBL.Controls.Add(tabPageRevoScan);
+            tabCtrlGRBL.Location = new Point(12, 12);
+            tabCtrlGRBL.Name = "tabCtrlGRBL";
+            tabCtrlGRBL.SelectedIndex = 0;
+            tabCtrlGRBL.Size = new Size(469, 595);
+            tabCtrlGRBL.TabIndex = 23;
+            // 
+            // tabPageGRBL
+            // 
+            tabPageGRBL.Controls.Add(textBoxLog);
+            tabPageGRBL.Controls.Add(btnSendCommand);
+            tabPageGRBL.Controls.Add(textBoxGRBLCommand);
+            tabPageGRBL.Controls.Add(groupBox2);
+            tabPageGRBL.Location = new Point(4, 29);
+            tabPageGRBL.Name = "tabPageGRBL";
+            tabPageGRBL.Padding = new Padding(3);
+            tabPageGRBL.Size = new Size(461, 562);
+            tabPageGRBL.TabIndex = 0;
+            tabPageGRBL.Text = "GRBL";
+            tabPageGRBL.UseVisualStyleBackColor = true;
+            // 
+            // btnSendCommand
+            // 
+            btnSendCommand.Location = new Point(12, 165);
+            btnSendCommand.Name = "btnSendCommand";
+            btnSendCommand.Size = new Size(94, 29);
+            btnSendCommand.TabIndex = 2;
+            btnSendCommand.Text = "Send Command";
+            btnSendCommand.UseVisualStyleBackColor = true;
+            btnSendCommand.Click += btnSendCommand_Click;
+            // 
+            // textBoxGRBLCommand
+            // 
+            textBoxGRBLCommand.Location = new Point(12, 132);
+            textBoxGRBLCommand.Name = "textBoxGRBLCommand";
+            textBoxGRBLCommand.Size = new Size(443, 27);
+            textBoxGRBLCommand.TabIndex = 1;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(btnConnect);
+            groupBox2.Controls.Add(btnRescan);
+            groupBox2.Controls.Add(comboBoxBaudRate);
+            groupBox2.Controls.Add(comboBoxCOMPorts);
+            groupBox2.Location = new Point(6, 6);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(269, 105);
+            groupBox2.TabIndex = 0;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "COM";
+            // 
+            // btnConnect
+            // 
+            btnConnect.Location = new Point(163, 24);
+            btnConnect.Name = "btnConnect";
+            btnConnect.Size = new Size(94, 29);
+            btnConnect.TabIndex = 2;
+            btnConnect.Text = "Connect";
+            btnConnect.UseVisualStyleBackColor = true;
+            btnConnect.Click += btnConnect_Click;
+            // 
+            // btnRescan
+            // 
+            btnRescan.Location = new Point(163, 59);
+            btnRescan.Name = "btnRescan";
+            btnRescan.Size = new Size(94, 29);
+            btnRescan.TabIndex = 1;
+            btnRescan.Text = "Rescan";
+            btnRescan.UseVisualStyleBackColor = true;
+            btnRescan.Click += btnRescan_Click;
+            // 
+            // comboBoxBaudRate
+            // 
+            comboBoxBaudRate.FormattingEnabled = true;
+            comboBoxBaudRate.Location = new Point(6, 60);
+            comboBoxBaudRate.Name = "comboBoxBaudRate";
+            comboBoxBaudRate.Size = new Size(151, 28);
+            comboBoxBaudRate.TabIndex = 1;
+            // 
+            // comboBoxCOMPorts
+            // 
+            comboBoxCOMPorts.FormattingEnabled = true;
+            comboBoxCOMPorts.Location = new Point(6, 26);
+            comboBoxCOMPorts.Name = "comboBoxCOMPorts";
+            comboBoxCOMPorts.Size = new Size(151, 28);
+            comboBoxCOMPorts.TabIndex = 0;
+            comboBoxCOMPorts.SelectedIndexChanged += comboBoxCOMPorts_SelectedIndexChanged;
+            // 
+            // tabPageRevoScan
+            // 
+            tabPageRevoScan.Controls.Add(OpenRevoScanButton);
+            tabPageRevoScan.Controls.Add(UseScanDuration);
+            tabPageRevoScan.Controls.Add(label3);
+            tabPageRevoScan.Controls.Add(ScanDuration);
+            tabPageRevoScan.Controls.Add(PauseTime);
+            tabPageRevoScan.Controls.Add(label8);
+            tabPageRevoScan.Controls.Add(groupBox1);
+            tabPageRevoScan.Controls.Add(StartButton);
+            tabPageRevoScan.Controls.Add(windowListComboBox);
+            tabPageRevoScan.Controls.Add(RevoScanWindowCountLabel);
+            tabPageRevoScan.Controls.Add(label1);
+            tabPageRevoScan.Controls.Add(refreshWindowListButton);
+            tabPageRevoScan.Controls.Add(label4);
+            tabPageRevoScan.Controls.Add(hwndLabel);
+            tabPageRevoScan.Controls.Add(connectToRevoScanWindowButton);
+            tabPageRevoScan.Location = new Point(4, 29);
+            tabPageRevoScan.Name = "tabPageRevoScan";
+            tabPageRevoScan.Padding = new Padding(3);
+            tabPageRevoScan.Size = new Size(461, 562);
+            tabPageRevoScan.TabIndex = 1;
+            tabPageRevoScan.Text = "Revo Scan";
+            tabPageRevoScan.UseVisualStyleBackColor = true;
+            // 
+            // textBoxLog
+            // 
+            textBoxLog.Location = new Point(12, 200);
+            textBoxLog.Multiline = true;
+            textBoxLog.Name = "textBoxLog";
+            textBoxLog.Size = new Size(443, 356);
+            textBoxLog.TabIndex = 3;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(519, 461);
-            Controls.Add(UseScanDuration);
-            Controls.Add(ScanDuration);
-            Controls.Add(label8);
-            Controls.Add(StartButton);
-            Controls.Add(RevoScanWindowCountLabel);
-            Controls.Add(OpenRevoScanButton);
-            Controls.Add(label4);
-            Controls.Add(connectToRevoScanWindowButton);
-            Controls.Add(hwndLabel);
-            Controls.Add(refreshWindowListButton);
-            Controls.Add(label1);
-            Controls.Add(windowListComboBox);
-            Controls.Add(groupBox1);
-            Controls.Add(PauseTime);
-            Controls.Add(label3);
+            ClientSize = new Size(490, 620);
+            Controls.Add(tabCtrlGRBL);
             Name = "MainForm";
             Text = "Revopoint Scan Automator";
             FormClosing += MainForm_FormClosing;
@@ -345,8 +469,13 @@
             ((System.ComponentModel.ISupportInitialize)RevoScanWindowHeight).EndInit();
             ((System.ComponentModel.ISupportInitialize)RevoScanWindowWidth).EndInit();
             ((System.ComponentModel.ISupportInitialize)ScanDuration).EndInit();
+            tabCtrlGRBL.ResumeLayout(false);
+            tabPageGRBL.ResumeLayout(false);
+            tabPageGRBL.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            tabPageRevoScan.ResumeLayout(false);
+            tabPageRevoScan.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -377,5 +506,16 @@
         private Label label8;
         private NumericUpDown ScanDuration;
         private CheckBox UseScanDuration;
+        private TabControl tabCtrlGRBL;
+        private TabPage tabPageGRBL;
+        private TabPage tabPageRevoScan;
+        private GroupBox groupBox2;
+        private ComboBox comboBoxBaudRate;
+        private ComboBox comboBoxCOMPorts;
+        private Button btnRescan;
+        private Button btnConnect;
+        private Button btnSendCommand;
+        private TextBox textBoxGRBLCommand;
+        private TextBox textBoxLog;
     }
 }

@@ -5,11 +5,18 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static RevopointScanAutomation.MainForm;
+using System.IO.Ports;
 
 namespace RevopointScanAutomation
 {
     public partial class MainForm : Form
     {
+
+        private GRBLPortScanner grblPortScanner;
+        private GRBLController grblController;
+
+        private bool grblPortIsOpen;
+
         private WindowManager windowListRetriever;
         private int revoScanWindowCount;
 
@@ -42,6 +49,13 @@ namespace RevopointScanAutomation
         {
             InitializeComponent();
 
+            grblPortIsOpen = false;
+
+            grblPortScanner = new GRBLPortScanner();
+            grblPortScanner.PortsChecked += GrblController_PortsChecked;
+            grblPortScanner.ErrorOccurred += GrblController_ErrorOccurred;
+            // _grblController.GetAvailablePorts();
+
             beepSoundPlayer = new SoundPlayer("beep.wav");
             completeSoundPlayer = new SoundPlayer("complete.wav");
 
@@ -63,6 +77,17 @@ namespace RevopointScanAutomation
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            // Populate the comboBoxBaudRate with data from BaudRateData class
+            comboBoxBaudRate.DataSource = BaudRateData.GetBaudRates();
+            comboBoxBaudRate.DisplayMember = "DisplayText";
+            comboBoxBaudRate.ValueMember = "Value";
+            comboBoxBaudRate.SelectedValue = 115200;
+
+            grblPortScanner.GetAvailableGRBLPorts();
+
+            validateBtnConnect();
+
             revoScanWindowCount = windowListRetriever.PopulateWindowList(windowListComboBox);
 
             OpenRevoScanButton.Enabled = true;
@@ -72,6 +97,39 @@ namespace RevopointScanAutomation
             {
                 windowListComboBox.SelectedIndex = 0;
             }
+        }
+
+        private void validateBtnConnect()
+        {
+            Object selectedPort = comboBoxCOMPorts.SelectedItem;
+            Object selectedBaudRate = comboBoxBaudRate.SelectedItem;
+
+            if (selectedPort != null && selectedBaudRate != null)
+            {
+                btnConnect.Enabled = true;
+            }
+            else
+            {
+                btnConnect.Enabled = false;
+            }
+        }
+
+        private void GrblController_PortsChecked(List<string> arduinoPorts)
+        {
+            // Invoke this on UI thread
+            this.Invoke((MethodInvoker)delegate
+            {
+                comboBoxCOMPorts.Items.Clear();
+                foreach (var port in arduinoPorts)
+                {
+                    comboBoxCOMPorts.Items.Add(port);
+                }
+            });
+        }
+
+        private void GrblController_ErrorOccurred(Exception ex)
+        {
+            MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void RefreshWindowList()
@@ -106,6 +164,11 @@ namespace RevopointScanAutomation
 
             int scanDuration = (int)ScanDuration.Value;
             SettingsManager.SaveIntValue("ScanDuration", scanDuration);
+
+            if (grblController.GetSerialPortIsOpen())
+            {
+                grblController.ClosePort();
+            }
 
         }
 
@@ -219,6 +282,66 @@ namespace RevopointScanAutomation
             completeSoundPlayer.Play();
             Thread.Sleep(500);
             completeSoundPlayer.Play();
+        }
+
+        private void btnRescan_Click(object sender, EventArgs e)
+        {
+            grblPortScanner.GetAvailableGRBLPorts();
+        }
+
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+
+            if (grblPortIsOpen)
+            {
+                // Call close method on GRBLController
+                grblPortIsOpen = grblController.ClosePort();
+                btnConnect.Text = "Connect";
+            }
+            else
+            {
+                // Get the selected COM port and baud rate from the combo boxes
+                string selectedPort = comboBoxCOMPorts.SelectedItem.ToString();
+                int selectedBaudRate = (int)comboBoxBaudRate.SelectedValue;
+
+                // Create a new instance of GRBLController and assign it to grblController
+                grblController = new GRBLController(selectedPort, selectedBaudRate);
+                grblController.DataReceived += GRBLController_DataReceived;
+
+                // Call the OpenPort method with the selected port and baud rate
+                grblPortIsOpen = grblController.OpenPort();
+                btnConnect.Text = "Disconnect";
+
+            }
+
+            btnConnect.Enabled = grblPortIsOpen;
+
+
+
+            // Retrieve the SerialPort instance from the GRBLController class
+            // SerialPort serialPort = grblController.GetSerialPort();
+        }
+
+        private void comboBoxCOMPorts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            validateBtnConnect();
+        }
+
+        private void btnSendCommand_Click(object sender, EventArgs e)
+        {
+            string grblCommand = textBoxGRBLCommand.Text;
+            grblController.SendCommand(grblCommand);
+
+
+        }
+
+        private void GRBLController_DataReceived(object sender, string response)
+        {
+            // Log the response (you can modify this to suit your needs)
+            Invoke((MethodInvoker)delegate
+            {
+                textBoxLog.AppendText(response);   
+            });
         }
     }
 
